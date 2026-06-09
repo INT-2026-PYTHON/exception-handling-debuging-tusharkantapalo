@@ -124,3 +124,34 @@ Explanation:
 =================================================
 
 """
+def read_numbers(path):
+
+    lines_read = 0
+    numbers = []
+
+    try:
+        with open(path, "r") as f:
+            for line in f:
+                numbers.append(float(line.strip()))
+                lines_read += 1
+    except FileNotFoundError:
+        return ("FileNotFoundError!")
+    except PermissionError:
+        return ("PermissionError!")
+    except ValueError:
+        return ("ValueError!")
+    except Exception as e:
+        return ("Error happened")
+    else:
+        total = sum(numbers)
+        return ("ok", total, lines_read)
+    finally:
+        print("Done reading")
+
+
+
+path = input("Enter file name: ")
+
+result = read_numbers(path)
+
+print(result)
